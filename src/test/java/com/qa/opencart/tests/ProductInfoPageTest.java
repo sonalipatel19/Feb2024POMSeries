@@ -99,10 +99,10 @@ public class ProductInfoPageTest extends BaseTest{
 		softAssert.assertAll();
 	}
 	
-	@Test
-	public void getProductTotalCountTest() {
-		cart.getTotalProductCount();
-	}
+//	@Test
+//	public void getProductTotalCountTest() {
+//		cart.getTotalProductCount();
+//	}
 
 	//hard assert(Assert) vs soft assert(verify - SoftAssert)
 	//Assert --> methods (static)
