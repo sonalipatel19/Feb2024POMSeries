@@ -19,7 +19,7 @@ public class SearchResultsPage {
 		elUtil = new ElementUtil(driver);
 	}
 	
-	private By searchResult = By.cssSelector("div.caption");
+	private By searchResult = By.cssSelector("div.product-thumb");
 	
 	public int getSearchResultsCount() {
 		List<WebElement> list = 

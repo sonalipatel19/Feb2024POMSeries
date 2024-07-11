@@ -24,6 +24,9 @@ public class DriverFactory {
 	
 	WebDriver driver;
 	Properties prop;
+	OptionsManager optionsManager;
+	
+//	public static String highlight;
 	
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 	
@@ -37,18 +40,22 @@ public class DriverFactory {
 		String browserName = prop.getProperty("browser");
 		System.out.println("browser name is : " +browserName);
 		
+	//	highlight = prop.getProperty("highlight");
+		
+		optionsManager = new OptionsManager(prop);
+		
 		switch (browserName.toLowerCase().trim()) {
 		case "chrome":
 			//driver = new ChromeDriver();
-			tlDriver.set(new ChromeDriver());
+			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			break;
 		case "firefox":
 			//driver = new FirefoxDriver();
-			tlDriver.set(new FirefoxDriver());
+			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
 			break;
 		case "edge":
 			//driver = new EdgeDriver();
-			tlDriver.set(new EdgeDriver());
+			tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
 			break;
 		case "safari":
 			//driver = new SafariDriver();
@@ -139,17 +146,35 @@ public class DriverFactory {
 	 */
 
 	public static String getScreenshot(String methodName) {
-		File srcFile = ((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.FILE);
-		
-		String path = System.getProperty("user.dir")+"/screenshots/"+methodName+"_"+System.currentTimeMillis()+".png";
-		
-		File destination = new File(path);
-		
-		try {
-			FileHandler.copy(srcFile, destination);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return path;
+		TakesScreenshot screenshotTaker = (TakesScreenshot) getDriver();
+        
+        // Take the screenshot and save it to a temporary location
+        File srcFile = screenshotTaker.getScreenshotAs(OutputType.FILE);
+        
+        // Define the path for the screenshots folder
+        String screenshotsDirPath = System.getProperty("user.dir") + "/screenshots";
+        
+        // Create the screenshots folder if it doesn't exist
+        File screenshotsDir = new File(screenshotsDirPath);
+        if (!screenshotsDir.exists()) {
+            if (screenshotsDir.mkdirs()) {
+                System.out.println("Folder 'screenshots' created successfully at: " + screenshotsDirPath);
+            } else {
+                System.out.println("Failed to create the folder 'screenshots' at: " + screenshotsDirPath);
+            }
+        }
+
+        // Define the destination path for the screenshot
+        String screenshotPath = screenshotsDirPath + "/" + methodName + "_" + System.currentTimeMillis() + ".png";
+        File destination = new File(screenshotPath);
+
+        // Copy the screenshot to the destination path
+        try {
+            FileHandler.copy(srcFile, destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return destination.getAbsolutePath();
 	}
 }

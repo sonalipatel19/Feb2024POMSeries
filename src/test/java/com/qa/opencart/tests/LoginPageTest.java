@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import com.qa.opencart.base.BaseTest;
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.errors.AppError;
-import com.qa.opencart.pages.AccountsPage;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -15,12 +14,13 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Stories;
 import io.qameta.allure.Story;
-import lombok.experimental.StandardException;
+
 
 @Epic("Epic 100: Design Open Cart Application with Shopping WorkFLow")
 @Story("US 101: Design login page for Open Cart Application")
+@Feature("F50: Feature login page")
+
 public class LoginPageTest extends BaseTest{
 	
 	
@@ -28,7 +28,6 @@ public class LoginPageTest extends BaseTest{
 	@Severity(SeverityLevel.MINOR)
 	@Owner("Sonali")
 	@Issue("Login-123")
-	@Feature("login page title features")
 	@Test (priority = 1)
 	public void loginPageTitleTest() {
 		String actTitle = lp.getLoginPageTitle();
@@ -57,6 +56,5 @@ public class LoginPageTest extends BaseTest{
 		accPage = lp.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 		Assert.assertEquals(accPage.getAccPageTitle(), AppConstants.ACCOUNT_PAGE_TITLE, AppError.TITLE_NOT_FOUND);
 	}
-	
 
 }

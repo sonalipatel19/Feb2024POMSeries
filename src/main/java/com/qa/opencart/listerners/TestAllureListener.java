@@ -11,7 +11,8 @@ import org.testng.ITestResult;
 import com.qa.opencart.factory.DriverFactory;
 
 
-public class TestAllureListener implements ITestListener {
+
+public class TestAllureListener  implements ITestListener{
 
 	private static String getTestMethodName(ITestResult iTestResult) {
 		return iTestResult.getMethod().getConstructorOrMethod().getName();

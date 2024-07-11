@@ -50,7 +50,7 @@ public class OptionsManager {
 			eo.addArguments("--headless");
 		}
 		if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
-			eo.addArguments("--incognito");
+			eo.addArguments("--inPrivate");
 		}
 		return eo;	
 	}

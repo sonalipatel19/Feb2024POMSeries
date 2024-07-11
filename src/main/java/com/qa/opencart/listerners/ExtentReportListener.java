@@ -18,6 +18,7 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.opencart.factory.DriverFactory;
 
 
+
 public class ExtentReportListener implements ITestListener {
 
 	private static final String OUTPUT_FOLDER = "./reports/";
@@ -45,8 +46,8 @@ public class ExtentReportListener implements ITestListener {
 		ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
 		reporter.config().setReportName("Open Cart Automation Test Results");
 		extentReports.attachReporter(reporter);
-		extentReports.setSystemInfo("System", "Windows");
-		extentReports.setSystemInfo("Author", "Sonali Patel");
+		extentReports.setSystemInfo("System", "MAC");
+		extentReports.setSystemInfo("Author", "Naveen AutomationLabs");
 		extentReports.setSystemInfo("Build#", "1.1");
 		extentReports.setSystemInfo("Team", "OpenCart QA Team");
 		extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
@@ -94,7 +95,7 @@ public class ExtentReportListener implements ITestListener {
 		String methodName = result.getMethod().getMethodName();
 		System.out.println((methodName + " passed!"));
 		test.get().pass("Test passed");
-	//	test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), methodName).build());
+		//test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), methodName).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
@@ -114,7 +115,7 @@ public class ExtentReportListener implements ITestListener {
 		
 		test.get().skip("Test skipped");
 
-	//	test.get().skip(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), methodName).build());
+		test.get().skip(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(DriverFactory.getScreenshot(methodName), methodName).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 

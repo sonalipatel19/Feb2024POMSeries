@@ -7,7 +7,7 @@
 	<listeners>
 		<listener class-name="com.qa.opencart.listerners.ExtentReportListener"></listener>
 		<listener class-name="com.qa.opencart.listerners.TestAllureListener"></listener>
-		<listener class-name="com.qa.opencart.listerners.AnnotationTransformer"></listener>
+		<!-- <listener class-name="com.qa.opencart.listerners.AnnotationTransformer"></listener>-->
 	</listeners>
 	
 	
@@ -18,21 +18,18 @@
 		</classes>
 	</test> 
 	
-	 <!--<test name="Account Page Test">
-		<parameter name="browser" value="firefox"></parameter>
+	<!-- <test name="Account Page Test">
+		<parameter name="browser" value="chrome"></parameter>
 		<classes>
 			<class name="com.qa.opencart.tests.AccountPageTest"></class>
 		</classes> 
 	</test> 
 	
-	 	<test name="Product Info Page Test">
+	<test name="Product Info Page Test">
 		<parameter name="browser" value="edge"></parameter>
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest"></class>
 		</classes>
 	</test> -->
-	
-	
-	
 	
 	</suite>

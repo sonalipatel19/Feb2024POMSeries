@@ -20,17 +20,17 @@ public class AccountPageTest extends BaseTest{
 	}
 	
 	
-	@Test
+	@Test(priority = 1)
 	public void accPageTitleTest() {
 		Assert.assertEquals(accPage.getAccPageTitle(), AppConstants.ACCOUNT_PAGE_TITLE, AppError.TITLE_NOT_FOUND);
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void accPageURLTest() {
 		Assert.assertTrue(accPage.getAccPageURL().contains(AppConstants.ACCOUNTS_PAGE_FRACTION_URL), AppError.URL_NOT_FOUND);
 	}
 	
-	@Test
+	@Test(priority = 3)
 	public void accPageHeadersTest() {
 		List<String> accPageHeadersList = accPage.getAccPageHeaders();
 		Assert.assertEquals(accPageHeadersList, AppConstants.ACC_PAGE_HEADERS_LIST, AppError.LIST_IS_NOT_MATCHED);
@@ -45,7 +45,7 @@ public class AccountPageTest extends BaseTest{
 			{"Airtel", 0}
 		};
 	}
-	@Test (dataProvider = "getSearchData")
+	@Test (dataProvider = "getSearchData", priority = 4)
 	public void searchTest(String searchKey, int resultsCount) {
 		sp = accPage.doSearch(searchKey);
 		Assert.assertEquals(sp.getSearchResultsCount(), resultsCount , AppError.RESULTS_COUNT_MISMATCHED);

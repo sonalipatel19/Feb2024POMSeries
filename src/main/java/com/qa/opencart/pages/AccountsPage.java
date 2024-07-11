@@ -23,7 +23,7 @@ public class AccountsPage {
 	}
 
 	private By logoutLink = By.linkText("Logout");
-	private By headers = By.xpath("//div[@id='content']/h2");	
+	private By headers = By.cssSelector("div#content h2");	
 	private By search = By.name("search");
 	private By searchIcon = By.cssSelector("div#search button");
 	
@@ -35,7 +35,7 @@ public class AccountsPage {
 	}
 	
 	public String getAccPageURL() {
-		String url = elUtil.waitForURLToBe(AppConstants.ACCOUNTS_PAGE_FRACTION_URL, TimeUtil.DEFAULT_TIME);
+		String url = elUtil.waitForURLContains(AppConstants.ACCOUNTS_PAGE_FRACTION_URL, TimeUtil.DEFAULT_TIME);
 		System.out.println("Account page URL : " + url);
 		return url;
 	}
@@ -46,7 +46,7 @@ public class AccountsPage {
 	
 	public List<String> getAccPageHeaders(){
 		
-		List<WebElement> headerList = elUtil.waitForPresenceOfElementsLocated(headers, TimeUtil.DEFAULT_TIME);
+		List<WebElement> headerList = elUtil.waitForVisibilityOfAllElementsLocated(headers, TimeUtil.DEFAULT_TIME);
 		
 		List<String> headersValList = new ArrayList<String>();
 		for(WebElement e : headerList) {
