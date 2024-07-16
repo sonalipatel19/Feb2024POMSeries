@@ -33,7 +33,7 @@ public class RegistrationPageTest extends BaseTest{
 		return ExcelUtil.getTestData(AppConstants.REGISTER_SHEET_NAME);
 	}
 	
-	@Test(dataProvider = "userRegTestDataFromSheet")
+	@Test(dataProvider = "userRegisterTestData")
 	public void userRegisterTest(String firstname, String lastname, String telephone, String pwd, String subs) {
 		
 		Assert.assertTrue
