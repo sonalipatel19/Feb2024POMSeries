@@ -23,8 +23,14 @@ public class OptionsManager {
 			System.out.println("===Running test in headless===");
 			co.addArguments("--headless");
 		}
+		
 		if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			co.addArguments("--incognito");
+		}
+		
+		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
+			co.setCapability("browserName", "chrome");
+			co.setCapability("enableVNC", true);
 		}
 		return co;	
 	}
@@ -39,6 +45,11 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			fo.addArguments("--incognito");
 		}
+		
+		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
+			fo.setCapability("browserName", "firefox");
+			fo.setCapability("enableVNC", true);
+		}
 		return fo;	
 	}
 	
@@ -51,6 +62,10 @@ public class OptionsManager {
 		}
 		if(Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			eo.addArguments("--inPrivate");
+		}
+		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
+			eo.setCapability("browserName", "edge");
+			eo.setCapability("enableVNC", true);
 		}
 		return eo;	
 	}
